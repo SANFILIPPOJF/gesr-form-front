@@ -1,5 +1,7 @@
+import { BASEURL } from "../constants/base_url";
+
     export const  login = async (cp: string, password: string): Promise<any> =>{
-        const response = await fetch('http://localhost:8000/auth/login', {
+        const response = await fetch(`${BASEURL}/auth/login`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -11,6 +13,6 @@
                     password: password
                 }
             )
-        });
+        });        
         return await response.json();
     }
