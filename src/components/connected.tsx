@@ -1,24 +1,31 @@
 import { AuthContext } from "../context/auth-context";
-import { NavBarre } from "./nav-barre";
+import { getByCp } from "../services/Users.service";
+import { Navbar } from "./navbar";
 import { useContext, useEffect } from "react";
 
 export function Connected() {
-    const { token } = useContext(AuthContext)
+    const { user, setUser } = useContext(AuthContext);
     useEffect(() => {
-        const options = { method: 'GET', headers: { 'Content-Type': 'application/json' }, body: 'false' };
 
-        fetch('http://localhost:8000/users/cp/7407117p', options)
-            .then(response => response.json())
-            .then(response => console.log(response))
-            .catch(err => console.error(err));
-
-    },[])
+        const userData = async () => {
+            const data = await getByCp(user.cp, user.token);
+            if (data.statusCode === 200) {
+                const newUser = { ...data.data, token: user.token };
+                setUser(newUser);
+            }
+        }
+        userData()
+    }, [])
 
     return (
-        <><NavBarre></NavBarre>
+        <>
+            <Navbar/>
             <div>
-                <h1 className="connected" style={{ fontSize: "5rem", color: "teal" }}>{token}</h1>
-            </div></>
+                <h1 className="connected" style={{ fontSize: "5rem", color: "teal" }}>{user.name}</h1>
+                <h1 className="connected" style={{ fontSize: "5rem", color: "teal" }}>{user.cp}</h1>
+                <h1 className="connected" style={{ fontSize: "5rem", color: "teal" }}>{user.fonction.name}</h1>
+            </div>
+        </>
     )
 };
 
