@@ -19,13 +19,13 @@ export function Navbar() {
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink className="nav-link" to="/formations">
-                        ajouter
+                    <NavLink className="nav-link" to="/connected">
+                        Ma page
                     </NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink className="nav-link" to="/edition">
-                        Perso
+                        edition
                     </NavLink>
                 </li>
             </ul>

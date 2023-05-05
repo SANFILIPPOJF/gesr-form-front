@@ -1,25 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavbarAccueil } from "./navbar-accueil";
+import { Titre } from "./titre";
 
 export function Accueil() {
     return (
-        <><div>
-            <nav className="mb-4">
-                <ul className="nav nav-pills justify-content-center">
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/">
-                            Accueil
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/connexion">
-                            Connexion
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <><Titre></Titre>
+            <NavbarAccueil></NavbarAccueil>
             <div>
                 <h1 className="accueil" style={{ fontSize: "5rem", color: "teal" }}>accueil</h1>
-            </div></>
+            </div>
+        </>
     )
 };

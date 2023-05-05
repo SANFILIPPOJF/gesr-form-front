@@ -17,14 +17,10 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ user, setUser}}>
       <div className="App">
-        <Titre></Titre>
         <BrowserRouter>
-
           <Routes>
             <Route path="/" element={<Accueil></Accueil>}></Route>
-            <Route path="/connexion" element={user.token==="" ? <Connexion/> : <Navigate to="/connected" />
-            }>
-            </Route>
+            <Route path="/connexion" element={user.token==="" ? <Connexion/> : <Navigate to="/connected" />}></Route>
             <Route path="/connected" element={user.token!=="" ? <Connected/> : <Navigate to="/" />}></Route>
           </Routes>
         </BrowserRouter>

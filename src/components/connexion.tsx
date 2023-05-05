@@ -2,12 +2,13 @@ import { login } from "../services/Users.service";
 import { AuthContext } from "../context/auth-context";
 import { useContext, useState } from "react";
 import { LogInfo } from "../types/login_type";
+import { NavbarAccueil } from "./navbar-accueil";
+import { Titre } from "./titre";
 
 export function Connexion() {
     const [logInfo, setLogInfo] = useState<LogInfo>({ cp: "", password: "" });
     const {user, setUser} = useContext(AuthContext);
     const handleClickParamEvent = async (logInfo: LogInfo) => {
-        console.log(logInfo);
         const data = await login(logInfo.cp, logInfo.password)
         if (data.statutCode === 200) {
 
@@ -23,6 +24,9 @@ export function Connexion() {
         setLogInfo((prev) => ({ ...prev, [propertyName]: propertyValue }));
     };
     return (
+        <>
+        <Titre/>
+        <NavbarAccueil></NavbarAccueil>
         <div className="container w-75">
             <div className="form-floating mb-3">
                 <input
@@ -31,8 +35,7 @@ export function Connexion() {
                     type="cp"
                     className="form-control"
                     id="floatingInput"
-                    placeholder="8888888X"
-                />
+                    placeholder="8888888X" />
                 <label htmlFor="floatingInput">CP</label>
             </div>
             <div className="form-floating mb-3">
@@ -42,8 +45,7 @@ export function Connexion() {
                     type="password"
                     className="form-control"
                     id="floatingPassword"
-                    placeholder="Password"
-                />
+                    placeholder="Password" />
                 <label htmlFor="floatingPassword">Password</label>
             </div>
             <button
@@ -52,6 +54,6 @@ export function Connexion() {
             >
                 Submit
             </button>
-        </div>
+        </div></>
     )
 };
