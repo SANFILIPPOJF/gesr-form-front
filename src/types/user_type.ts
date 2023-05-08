@@ -14,6 +14,6 @@ export interface User {
     residence: Residence;
     habilitations: Habilitation[];
     formations: Formation[];
-    habFormations: FormationType[];
+    habFormateurs: FormationType[];
     forme: Formation[]
 }

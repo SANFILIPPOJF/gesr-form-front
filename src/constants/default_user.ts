@@ -13,5 +13,5 @@ export const DEFAULT_USER: User = {
     habilitations: [],
     formations: [],
     forme: [],
-    habFormations: []
+    habFormateurs: []
 }

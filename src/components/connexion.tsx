@@ -2,7 +2,7 @@ import { login } from "../services/Users.service";
 import { AuthContext } from "../context/auth-context";
 import { useContext, useState } from "react";
 import { LogInfo } from "../types/login_type";
-import { NavbarAccueil } from "./navbar-accueil";
+import { NavbarAccueil } from "./navbar/navbar-accueil";
 import { Titre } from "./titre";
 
 export function Connexion() {
