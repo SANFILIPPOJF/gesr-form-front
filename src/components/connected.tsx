@@ -1,6 +1,6 @@
 import { Accordion, Badge, Table } from "react-bootstrap";
 import { AuthContext } from "../context/auth-context";
-import { getByCp } from "../services/Users.service";
+import { getUserByCp } from "../services/Users.service";
 import { Navbar } from "./navbar/navbar-connected";
 import { useContext, useEffect } from "react";
 
@@ -10,7 +10,7 @@ export function Connected() {
     useEffect(() => {
 
         const userData = async () => {
-            const data = await getByCp(user.cp, user.token);
+            const data = await getUserByCp(user.cp, user.token);
             if (data.statusCode === 200) {
                 const newUser = { ...data.data, token: user.token };
                 setUser(newUser);
@@ -95,7 +95,7 @@ export function Connected() {
                 </Accordion.Item>
                 {user.forme.length > 0 && <Accordion.Item eventKey="1">
                     <Accordion.Header>Je Forme :
-                        <Badge bg="warning">{user.forme.length}</Badge>
+                        <Badge bg="warning" pill>{user.forme.length}</Badge>
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>

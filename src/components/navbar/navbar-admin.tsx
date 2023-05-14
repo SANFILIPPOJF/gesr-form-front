@@ -6,7 +6,7 @@ export function NavbarAdmin() {
             <nav className="mb-4">
                 <ul className="nav nav-pills justify-content-center">
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/admin">
+                        <NavLink className="nav-link" to="/admin/agents">
                             Les Agents
                         </NavLink>
                     </li>
@@ -21,7 +21,7 @@ export function NavbarAdmin() {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/admin/types">
+                        <NavLink className="nav-link" to="/admin/types-form">
                             Les Types de formation
                         </NavLink>
                     </li>

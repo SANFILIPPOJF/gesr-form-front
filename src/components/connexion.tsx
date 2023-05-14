@@ -7,16 +7,15 @@ import { Titre } from "./titre";
 
 export function Connexion() {
     const [logInfo, setLogInfo] = useState<LogInfo>({ cp: "", password: "" });
-    const {user, setUser} = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
     const handleClickParamEvent = async (logInfo: LogInfo) => {
-        const data = await login(logInfo.cp, logInfo.password)
-        if (data.statutCode === 200) {
-
-            const newUser = {...user}
+        const response = await login(logInfo.cp, logInfo.password)
+        if (response.statusCode === 200) {
+            const newUser = { ...user }
             newUser.cp = logInfo.cp;
-            newUser.token = data.access_token;
-            setUser (newUser)
-        }
+            newUser.token = response.data.access_token
+            setUser(newUser)
+        }else alert(response.message)
     };
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         const propertyName = e.currentTarget.name;
@@ -25,35 +24,31 @@ export function Connexion() {
     };
     return (
         <>
-        <Titre/>
-        <NavbarAccueil></NavbarAccueil>
-        <div className="container w-75">
-            <div className="form-floating mb-3">
-                <input
-                    onChange={handleChange}
-                    name="cp"
-                    type="cp"
-                    className="form-control"
-                    id="floatingInput"
-                    placeholder="8888888X" />
-                <label htmlFor="floatingInput">CP</label>
-            </div>
-            <div className="form-floating mb-3">
-                <input
-                    onChange={handleChange}
-                    name="password"
-                    type="password"
-                    className="form-control"
-                    id="floatingPassword"
-                    placeholder="Password" />
-                <label htmlFor="floatingPassword">Password</label>
-            </div>
-            <button
-                className="btn btn-primary"
-                onClick={() => handleClickParamEvent(logInfo)}
-            >
-                Submit
-            </button>
-        </div></>
+            <Titre />
+            <NavbarAccueil></NavbarAccueil>
+            <div className="container w-75">
+                <div className="form-floating mb-3">
+                    <input
+                        onChange={handleChange}
+                        name="cp"
+                        type="cp"
+                        className="form-control"
+                        id="floatingInput"
+                        placeholder="8888888X" />
+                    <label htmlFor="floatingInput">CP</label>
+                </div>
+                <div className="form-floating mb-3">
+                    <input
+                        onChange={handleChange}
+                        name="password"
+                        type="password"
+                        className="form-control"
+                        id="floatingPassword"
+                        placeholder="Password" />
+                    <label htmlFor="floatingPassword">Password</label>
+                </div>
+                <button className="btn btn-primary"
+                    onClick={() => handleClickParamEvent(logInfo)}>Soumettre</button>
+            </div></>
     )
 };

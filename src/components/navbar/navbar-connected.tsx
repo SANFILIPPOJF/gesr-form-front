@@ -28,12 +28,12 @@ export function Navbar() {
                         </NavLink>
                     </li>
                     {user.fonction.name === "Admin" && <>
-                        {window.location.pathname !== "/admin" && <li className="nav-item">
+                        {!window.location.pathname.includes("/admin") && <li className="nav-item">
                             <NavLink className="nav-link" to="/management">
                                 Mode Gestionnaire
                             </NavLink>
                         </li>}
-                        {window.location.pathname !== "/management" && <li className="nav-item">
+                        {!window.location.pathname.includes("/management") && <li className="nav-item">
                             <NavLink className="nav-link" to="/admin">
                                 Mode Admin
                             </NavLink>
