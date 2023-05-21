@@ -1,7 +1,7 @@
-
 import { BASEURL } from "../constants/base_url";
 import { NewUser } from "../types/newuser_type";
 import { TResponse } from "../types/response_type";
+import { User } from "../types/user_type";
 
 
 export const login = async (cp: string, password: string): Promise<TResponse> => {
@@ -31,7 +31,7 @@ export const getUserByCp = async (cp: string, token: string): Promise<TResponse>
     return await response.json();
 }
 
-export const addUser = async (userInput: NewUser): Promise<TResponse> => {    
+export const addUser = async (userInput: NewUser): Promise<TResponse> => {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -43,5 +43,26 @@ export const addUser = async (userInput: NewUser): Promise<TResponse> => {
         "fonctionId": ${userInput.fonctionId}}`
     };
     const response = await fetch(`${BASEURL}/users/`, options)
+    return await response.json();
+}
+
+export const updateUser = async (user: User): Promise<TResponse> => {
+    const options = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: `{"name":"${user.name}",
+        "residenceId": ${user.residence.id},
+        "fonctionId": ${user.fonction.id}}`
+    };
+    const response = await fetch(`${BASEURL}/users/${user.id}`, options)
+    return await response.json();
+}
+
+export const inactiveUser = async (userId: number): Promise<TResponse> => {
+    const options = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    const response = await fetch(`${BASEURL}/users/${userId}`, options)
     return await response.json();
 }
