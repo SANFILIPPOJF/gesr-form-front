@@ -14,8 +14,12 @@ import { DEFAULT_RESIDENCE } from './constants/default_residence';
 import { DEFAULT_FONCTION } from './constants/default_fonction';
 import { Residence } from './types/residence_type';
 import { Fonction } from './types/fonction_type';
+import { Salle } from './types/salle_type';
+import { DEFAULT_SALLE } from './constants/default_salle';
 
 const App = () => {
+  const [salle, setSalle] = useState<Salle>(DEFAULT_SALLE)
+  const [salles, setSalles] = useState<Salle[]>([]);
   const [connected, setConnected] = useState<User>(DEFAULT_USER);
   const [user, setUser] = useState<User>(DEFAULT_USER);
   const [users, setUsers] = useState<User[]>([]);
@@ -31,7 +35,8 @@ const App = () => {
       reload, setReload,
       user, users, setUser, setUsers,
       residence, residences, setResidences, setResidence,
-      fonction, fonctions, setFonctions, setFonction
+      fonction, fonctions, setFonctions, setFonction,
+      salle, salles, setSalle, setSalles
     }}>
       <div className="App">
         <BrowserRouter>
