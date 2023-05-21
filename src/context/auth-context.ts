@@ -7,6 +7,7 @@ import { DEFAULT_FONCTION } from "../constants/default_fonction";
 import { Fonction } from "../types/fonction_type";
 
 export const AuthContext = createContext({
+    connected: DEFAULT_USER,
     user: DEFAULT_USER,
     users: [DEFAULT_USER],
     residence: DEFAULT_RESIDENCE,
@@ -14,6 +15,7 @@ export const AuthContext = createContext({
     fonction: DEFAULT_FONCTION,
     fonctions: [DEFAULT_FONCTION],
     reload: false,
+    setConnected: (value: User) => {},
     setReload: (value: boolean) => {},
     setFonction: (value: Fonction) => {},
     setFonctions: (value: Fonction[]) => {},

@@ -16,6 +16,7 @@ import { Residence } from './types/residence_type';
 import { Fonction } from './types/fonction_type';
 
 const App = () => {
+  const [connected, setConnected] = useState<User>(DEFAULT_USER);
   const [user, setUser] = useState<User>(DEFAULT_USER);
   const [users, setUsers] = useState<User[]>([]);
   const [residence, setResidence] = useState<Residence>(DEFAULT_RESIDENCE);
@@ -26,6 +27,7 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{
+      connected, setConnected,
       reload, setReload,
       user, users, setUser, setUsers,
       residence, residences, setResidences, setResidence,
@@ -35,16 +37,16 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Accueil></Accueil>}></Route>
-            <Route path="/connexion" element={user.token === "" ? <Connexion /> : <Navigate to="/connected" />}></Route>
-            <Route path="/connected" element={user.token !== "" ? <Connected /> : <Navigate to="/" />}></Route>
-            <Route path="/admin" element={user.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
-            <Route path="/admin/agents" element={user.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
-            <Route path="/admin/residences" element={user.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
-            <Route path="/admin/fonctions" element={user.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
-            <Route path="/admin/types-form" element={user.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
-            <Route path="/admin/salles" element={user.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
-            <Route path="/admin/habilitations" element={user.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
-            <Route path="/management" element={user.token !== "" ? <Management /> : <Navigate to="/" />}></Route>
+            <Route path="/connexion" element={connected.token === "" ? <Connexion /> : <Navigate to="/connected" />}></Route>
+            <Route path="/connected" element={connected.token !== "" ? <Connected /> : <Navigate to="/" />}></Route>
+            <Route path="/admin" element={connected.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
+            <Route path="/admin/agents" element={connected.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
+            <Route path="/admin/residences" element={connected.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
+            <Route path="/admin/fonctions" element={connected.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
+            <Route path="/admin/types-form" element={connected.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
+            <Route path="/admin/salles" element={connected.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
+            <Route path="/admin/habilitations" element={connected.token !== "" ? <Admin /> : <Navigate to="/" />}></Route>
+            <Route path="/management" element={connected.token !== "" ? <Management /> : <Navigate to="/" />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

@@ -11,12 +11,12 @@ import { Salles } from "./admin/salles";
 import { Habilitations } from "./admin/habilitations";
 
 export function Admin() {
-    const { user, setUser } = useContext(AuthContext);
+    const { connected } = useContext(AuthContext);
     useEffect(() => { })
     return (
         <>
             <div>
-                <h1 className="titre" style={{ fontSize: "2rem", color: "teal" }}>{user.name}</h1>
+                <h1 className="titre" style={{ fontSize: "2rem", color: "teal" }}>{connected.name}</h1>
             </div>
             <Navbar />
             <NavbarAdmin />

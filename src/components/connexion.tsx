@@ -7,14 +7,15 @@ import { Titre } from "./titre";
 
 export function Connexion() {
     const [logInfo, setLogInfo] = useState<LogInfo>({ cp: "", password: "" });
-    const { user, setUser } = useContext(AuthContext);
+    const { connected, setConnected } = useContext(AuthContext);
+
     const handleClickParamEvent = async (logInfo: LogInfo) => {
         const response = await login(logInfo.cp, logInfo.password)
         if (response.statusCode === 200) {
-            const newUser = { ...user }
+            const newUser = { ...connected }
             newUser.cp = logInfo.cp;
             newUser.token = response.data.access_token
-            setUser(newUser)
+            setConnected(newUser)
         }else alert(response.message)
     };
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -33,8 +34,7 @@ export function Connexion() {
                         name="cp"
                         type="cp"
                         className="form-control"
-                        id="floatingInput"
-                        placeholder="8888888X" />
+                        id="floatingInput" />
                     <label htmlFor="floatingInput">CP</label>
                 </div>
                 <div className="form-floating mb-3">

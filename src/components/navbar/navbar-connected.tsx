@@ -4,9 +4,9 @@ import { AuthContext } from "../../context/auth-context";
 import { DEFAULT_USER } from "../../constants/default_user";
 
 export function Navbar() {
-    const { user, setUser } = useContext(AuthContext);
+    const { connected, setConnected } = useContext(AuthContext);
     const deconnexion = () => {
-        setUser(DEFAULT_USER);
+        setConnected(DEFAULT_USER);
     };
     return (
         <div>
@@ -27,7 +27,7 @@ export function Navbar() {
                             Ma page
                         </NavLink>
                     </li>
-                    {user.fonction.name === "Admin" && <>
+                    {connected.fonction.name === "Admin" && <>
                         {!window.location.pathname.includes("/admin") && <li className="nav-item">
                             <NavLink className="nav-link" to="/management">
                                 Mode Gestionnaire

@@ -6,14 +6,14 @@ import { useContext, useEffect } from "react";
 
 
 export function Connected() {
-    const { user, setUser } = useContext(AuthContext);
+    const { connected, setConnected } = useContext(AuthContext);
     useEffect(() => {
 
         const userData = async () => {
-            const data = await getUserByCp(user.cp, user.token);
+            const data = await getUserByCp(connected.cp, connected.token);
             if (data.statusCode === 200) {
-                const newUser = { ...data.data, token: user.token };
-                setUser(newUser);
+                const newUser = { ...data.data, token: connected.token };
+                setConnected(newUser);
             }
         }
         userData();
@@ -21,7 +21,7 @@ export function Connected() {
     const toggleDone = (id: number) => {
 
     }
-    const formateurs = user.forme.filter((form) => { return form.status === 1 });
+    const formateurs = connected.forme.filter((form) => { return form.status === 1 });
     const formateursTab = formateurs.map((form, index) => {
         return (
             <tr key={index}>
@@ -37,7 +37,7 @@ export function Connected() {
             </tr>
         )
     })
-    const formations = user.formations.filter((form) => { return form.status === 1 });
+    const formations = connected.formations.filter((form) => { return form.status === 1 });
     const formTab = formations.map((form, index) => {
         return (
             <tr key={index}>
@@ -49,7 +49,7 @@ export function Connected() {
             </tr>
         )
     })
-    const habTab = user.habilitations.map((hab, index) => {
+    const habTab = connected.habilitations.map((hab, index) => {
         return (
             <tr key={index}>
                 <td>{hab.formationType.name}</td>
@@ -58,7 +58,7 @@ export function Connected() {
         )
     })
 
-    const habFormTab = user.habFormateurs.map((habForm, index) => {
+    const habFormTab = connected.habFormateurs.map((habForm, index) => {
         return (
             <tr key={index}>
                 <td>{habForm.name}</td>
@@ -68,7 +68,7 @@ export function Connected() {
     return (
         <>
             <div>
-                <h1 className="titre" style={{ fontSize: "2rem", color: "teal" }}>{user.name}</h1>
+                <h1 className="titre" style={{ fontSize: "2rem", color: "teal" }}>{connected.name}</h1>
             </div>
             <Navbar/>
             <Accordion>
@@ -85,17 +85,17 @@ export function Connected() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{user.cp}</td>
-                                    <td>{user.residence.name}</td>
-                                    <td>{user.fonction.name}</td>
+                                    <td>{connected.cp}</td>
+                                    <td>{connected.residence.name}</td>
+                                    <td>{connected.fonction.name}</td>
                                 </tr>
                             </tbody>
                         </Table>
                     </Accordion.Body>
                 </Accordion.Item>
-                {user.forme.length > 0 && <Accordion.Item eventKey="1">
+                {connected.forme.length > 0 && <Accordion.Item eventKey="1">
                     <Accordion.Header>Je Forme :
-                        <Badge bg="warning" pill>{user.forme.length}</Badge>
+                        <Badge bg="warning" pill>{connected.forme.length}</Badge>
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>
@@ -135,9 +135,9 @@ export function Connected() {
                         </Table>
                     </Accordion.Body>
                 </Accordion.Item>}
-                {user.habilitations.length > 0 && <Accordion.Item eventKey="3">
+                {connected.habilitations.length > 0 && <Accordion.Item eventKey="3">
                     <Accordion.Header>Mes Habilitations :
-                        <Badge bg="info">{user.habilitations.length}</Badge>
+                        <Badge bg="info">{connected.habilitations.length}</Badge>
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>
@@ -153,9 +153,9 @@ export function Connected() {
                         </Table>
                     </Accordion.Body>
                 </Accordion.Item>}
-                {user.habFormateurs.length > 0 && <Accordion.Item eventKey="4">
+                {connected.habFormateurs.length > 0 && <Accordion.Item eventKey="4">
                     <Accordion.Header>Mes Habilitations Formateur :
-                        <Badge bg="info">{user.habFormateurs.length}</Badge>
+                        <Badge bg="info">{connected.habFormateurs.length}</Badge>
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>

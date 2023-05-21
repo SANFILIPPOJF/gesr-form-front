@@ -3,14 +3,15 @@ import { AuthContext } from "../context/auth-context";
 import { Accordion } from "react-bootstrap";
 import { Navbar } from "./navbar/navbar-connected";
 import { NavbarManagement } from "./navbar/navbar-management";
+import { connected } from "process";
 
 export function Management() {
-    const { user, setUser } = useContext(AuthContext);
+    const { connected } = useContext(AuthContext);
     useEffect(() => { })
     return (
         <>
             <div>
-                <h1 className="titre" style={{ fontSize: "2rem", color: "teal" }}>{user.name}</h1>
+                <h1 className="titre" style={{ fontSize: "2rem", color: "teal" }}>{connected.name}</h1>
             </div>
             <Navbar/>
             <NavbarManagement/>
