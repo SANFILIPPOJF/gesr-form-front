@@ -16,9 +16,13 @@ import { Residence } from './types/residence_type';
 import { Fonction } from './types/fonction_type';
 import { Salle } from './types/salle_type';
 import { DEFAULT_SALLE } from './constants/default_salle';
+import { FormationType } from './types/form-type_type';
+import { DEFAULT_FORMTYPE } from './constants/default_formtype';
 
 const App = () => {
-  const [salle, setSalle] = useState<Salle>(DEFAULT_SALLE)
+  const [type, setType] = useState<FormationType>(DEFAULT_FORMTYPE);
+  const [types, setTypes] = useState<FormationType[]>([]);
+  const [salle, setSalle] = useState<Salle>(DEFAULT_SALLE);
   const [salles, setSalles] = useState<Salle[]>([]);
   const [connected, setConnected] = useState<User>(DEFAULT_USER);
   const [user, setUser] = useState<User>(DEFAULT_USER);
@@ -36,7 +40,8 @@ const App = () => {
       user, users, setUser, setUsers,
       residence, residences, setResidences, setResidence,
       fonction, fonctions, setFonctions, setFonction,
-      salle, salles, setSalle, setSalles
+      salle, salles, setSalle, setSalles,
+      type, types, setType, setTypes
     }}>
       <div className="App">
         <BrowserRouter>

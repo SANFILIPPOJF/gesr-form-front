@@ -10,6 +10,7 @@ import { getResidences } from "../../services/Residences.service";
 import { DEFAULT_RESIDENCE } from "../../constants/default_residence";
 import { DEFAULT_FONCTION } from "../../constants/default_fonction";
 import { DEFAULT_USER } from "../../constants/default_user";
+import { SELECT_LENGTH } from "../../constants/select_length";
 
 export function Agents() {
 
@@ -58,6 +59,10 @@ export function Agents() {
             <option key={index} value={index}>{user.name}</option>
         )
     })
+    const usersSelectLength = () => {
+        if (users.length < SELECT_LENGTH) return users.length
+        return SELECT_LENGTH
+    }
     const residencesSelect = residences.map((residence, index) => {
         return (
             <option key={index} value={index}>{residence.name}</option>
@@ -273,7 +278,7 @@ export function Agents() {
                     }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setUser(users[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setUser(users[+e.target.value])} size={usersSelectLength()} aria-label=".form-select-lg example">
                                 {usersSelect}
                             </select>
                         </div>

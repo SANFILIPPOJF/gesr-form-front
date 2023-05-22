@@ -7,8 +7,12 @@ import { DEFAULT_FONCTION } from "../constants/default_fonction";
 import { Fonction } from "../types/fonction_type";
 import { DEFAULT_SALLE } from "../constants/default_salle";
 import { Salle } from "../types/salle_type";
+import { DEFAULT_FORMTYPE } from "../constants/default_formtype";
+import { FormationType } from "../types/form-type_type";
 
 export const AuthContext = createContext({
+    type: DEFAULT_FORMTYPE,
+    types: [DEFAULT_FORMTYPE],
     salle: DEFAULT_SALLE,
     salles: [DEFAULT_SALLE],
     connected: DEFAULT_USER,
@@ -19,6 +23,8 @@ export const AuthContext = createContext({
     fonction: DEFAULT_FONCTION,
     fonctions: [DEFAULT_FONCTION],
     reload: false,
+    setType: (value: FormationType) => {},
+    setTypes: (value: FormationType[]) => {},
     setSalle: (value: Salle) => {},
     setSalles: (value: Salle[]) => {},
     setConnected: (value: User) => {},

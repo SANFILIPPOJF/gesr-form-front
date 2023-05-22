@@ -16,9 +16,8 @@ export function Salles() {
 
         const sallesData = async () => {
             const response: TResponse = await getSalles(connected.token);
-            if (response.statusCode < 300) {
-                setSalles([...response.data]);
-            }
+            if (response.statusCode < 300) setSalles([...response.data]);
+            else alert(response.message)
         }
         sallesData();
     }, [reload])
