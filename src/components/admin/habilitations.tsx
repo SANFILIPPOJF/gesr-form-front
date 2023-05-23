@@ -130,7 +130,7 @@ export function Habilitations() {
                                 {usersSelect}
                             </select>
                         </div>
-                        <Table striped>
+                        {userHabilitationsTab.length > 0 && <Table striped>
                             <thead>
                                 <tr>
                                     <th>Nom</th>
@@ -140,7 +140,7 @@ export function Habilitations() {
                             <tbody>
                                 {userHabilitationsTab}
                             </tbody>
-                        </Table>
+                        </Table>}
                     </div>
                 </Accordion.Body>
             </Accordion.Item>
@@ -234,14 +234,14 @@ export function Habilitations() {
                             </select>
                         </div>
 
-                        <div>
+                        {userTypesSelect.length > 0 && <><div>
                             <select className="form-select form-select-sm mb-3"
                                 onChange={(e) => setHabilitation(habilitations[+e.target.value])} size={SelectLength(userTypesSelect.length)} aria-label=".form-select-lg example">
                                 {userTypesSelect}
                             </select>
                         </div>
                         <button className="btn btn-primary" type="submit">Supprimer
-                        </button>
+                        </button></>}
                     </form>
                 </Accordion.Body>
             </Accordion.Item>

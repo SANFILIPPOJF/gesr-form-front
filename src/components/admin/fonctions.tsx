@@ -93,7 +93,7 @@ export function Fonctions() {
     };
     return (
         <Accordion>
-            <Accordion.Item eventKey="0">
+            {fonctionsTab.length > 0 && <Accordion.Item eventKey="0">
                 <Accordion.Header>Liste des Fonctions</Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
@@ -109,7 +109,7 @@ export function Fonctions() {
                         </Table>
                     </div>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
             <Accordion.Item eventKey="1">
                 <Accordion.Header>Ajouter une Fonction</Accordion.Header>
                 <Accordion.Body>
@@ -134,7 +134,7 @@ export function Fonctions() {
                     </form>
                 </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2">
+            {fonctionsTab.length > 0 && <Accordion.Item eventKey="2">
                 <Accordion.Header>Modifier une Fonction</Accordion.Header>
                 <Accordion.Body>
                     <form className="container w-100"
@@ -163,8 +163,8 @@ export function Fonctions() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
+            </Accordion.Item>}
+            {fonctionsTab.length > 0 && <Accordion.Item eventKey="3">
                 <Accordion.Header>Supprimer une Fonction</Accordion.Header>
                 <Accordion.Body>
                 <form onSubmit={(e) => {
@@ -182,7 +182,7 @@ export function Fonctions() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
         </Accordion >
     )
 };

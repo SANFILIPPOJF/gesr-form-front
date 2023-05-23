@@ -31,7 +31,7 @@ export function Connected() {
                 <td>{form.formationType.duree}</td>
                 <td>{form.salle.name}</td>
                 <td>
-                <input key={index} type="checkbox" onChange={() => toggleDone(form.id)}></input>
+                    <input key={index} type="checkbox" onChange={() => toggleDone(form.id)}></input>
                 </td>
 
             </tr>
@@ -70,7 +70,7 @@ export function Connected() {
             <div>
                 <h1 className="titre" style={{ fontSize: "2rem", color: "teal" }}>{connected.name}</h1>
             </div>
-            <Navbar/>
+            <Navbar />
             <Accordion>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Mon Profil</Accordion.Header>
@@ -136,8 +136,9 @@ export function Connected() {
                     </Accordion.Body>
                 </Accordion.Item>}
                 {connected.habilitations.length > 0 && <Accordion.Item eventKey="3">
-                    <Accordion.Header>Mes Habilitations :
-                        <Badge bg="info">{connected.habilitations.length}</Badge>
+                    <Accordion.Header>
+                        Mes Habilitations :
+                        <div className="ms-2"><Badge bg="info">{connected.habilitations.length}</Badge></div>
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>
@@ -155,7 +156,7 @@ export function Connected() {
                 </Accordion.Item>}
                 {connected.habFormateurs.length > 0 && <Accordion.Item eventKey="4">
                     <Accordion.Header>Mes Habilitations Formateur :
-                        <Badge bg="info">{connected.habFormateurs.length}</Badge>
+                        <div className="ms-2"><Badge bg="info">{connected.habFormateurs.length}</Badge></div>
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>

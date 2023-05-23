@@ -48,7 +48,7 @@ const App = () => {
       type, types, setType, setTypes,
       habilitation, habilitations, setHabilitation, setHabilitations
     }}>
-      <div className="App bg-info-subtle">
+      <div className="App">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Accueil></Accueil>}></Route>

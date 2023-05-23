@@ -137,7 +137,7 @@ export function Agents() {
 
     return (
         <Accordion>
-            <Accordion.Item eventKey="0">
+            {usersTab.length > 0 && <Accordion.Item eventKey="0">
                 <Accordion.Header>Liste des Agents</Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
@@ -155,7 +155,7 @@ export function Agents() {
                         </Table>
                     </div>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
             <Accordion.Item eventKey="1">
                 <Accordion.Header>Ajouter un Agent</Accordion.Header>
                 <Accordion.Body>
@@ -221,7 +221,7 @@ export function Agents() {
                     </form>
                 </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2">
+            {usersTab.length > 0 && <Accordion.Item eventKey="2">
                 <Accordion.Header>Modifier un Agent</Accordion.Header>
                 <Accordion.Body>
                     <form className="container w-100"
@@ -262,8 +262,8 @@ export function Agents() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
+            </Accordion.Item>}
+            {usersTab.length > 0 && <Accordion.Item eventKey="3">
                 <Accordion.Header>Supprimer un Agent</Accordion.Header>
                 <Accordion.Body>
                     <form onSubmit={(e) => {
@@ -281,7 +281,7 @@ export function Agents() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
         </Accordion >
     )
 };

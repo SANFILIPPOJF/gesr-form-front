@@ -96,7 +96,7 @@ export function TypesFormation() {
     };
     return (
         <Accordion>
-            <Accordion.Item eventKey="0">
+            {typesTab.length > 0 && <Accordion.Item eventKey="0">
                 <Accordion.Header>Liste des Types de formation</Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
@@ -114,7 +114,7 @@ export function TypesFormation() {
                         </Table>
                     </div>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
             <Accordion.Item eventKey="1">
                 <Accordion.Header>Ajouter un Type de formation</Accordion.Header>
                 <Accordion.Body>
@@ -158,7 +158,7 @@ export function TypesFormation() {
                     </form>
                 </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2">
+            {typesTab.length > 0 && <Accordion.Item eventKey="2">
                 <Accordion.Header>Modifier un Type de formation</Accordion.Header>
                 <Accordion.Body>
                     <form className="container w-100"
@@ -206,8 +206,8 @@ export function TypesFormation() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
+            </Accordion.Item>}
+            {typesTab.length > 0 && <Accordion.Item eventKey="3">
                 <Accordion.Header>Supprimer un Type de formation</Accordion.Header>
                 <Accordion.Body>
                     <form onSubmit={(e) => {
@@ -225,7 +225,7 @@ export function TypesFormation() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
         </Accordion >
     )
 };

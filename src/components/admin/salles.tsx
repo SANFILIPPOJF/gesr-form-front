@@ -95,7 +95,7 @@ export function Salles() {
     };
     return (
         <Accordion>
-            <Accordion.Item eventKey="0">
+            {sallesTab.length > 0 && <Accordion.Item eventKey="0">
                 <Accordion.Header>Liste des Salles</Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
@@ -113,7 +113,7 @@ export function Salles() {
                         </Table>
                     </div>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
             <Accordion.Item eventKey="1">
                 <Accordion.Header>Ajouter une Salle</Accordion.Header>
                 <Accordion.Body>
@@ -157,7 +157,7 @@ export function Salles() {
                     </form>
                 </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2">
+            {sallesTab.length > 0 && <Accordion.Item eventKey="2">
                 <Accordion.Header>Modifier une Salle</Accordion.Header>
                 <Accordion.Body>
                     <form className="container w-100"
@@ -205,8 +205,8 @@ export function Salles() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="3">
+            </Accordion.Item>}
+            {sallesTab.length > 0 && <Accordion.Item eventKey="3">
                 <Accordion.Header>Supprimer une Salle</Accordion.Header>
                 <Accordion.Body>
                     <form onSubmit={(e) => {
@@ -224,7 +224,7 @@ export function Salles() {
                         </button>
                     </form>
                 </Accordion.Body>
-            </Accordion.Item>
+            </Accordion.Item>}
         </Accordion >
     )
 };
