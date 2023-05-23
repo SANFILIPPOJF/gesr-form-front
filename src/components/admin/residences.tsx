@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { addResidence, getResidences, inactiveResidence, updateResidence } from "../../services/Residences.service";
 import { DEFAULT_RESIDENCE } from "../../constants/default_residence";
+import { SelectLength } from "../../constants/select_length";
 
 export function Residences() {
     const { residence, residences, reload, connected,
@@ -144,7 +145,7 @@ export function Residences() {
                         }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setResidence(residences[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setResidence(residences[+e.target.value])} size={SelectLength(residencesSelect.length)} aria-label=".form-select-lg example">
                                 {residencesSelect}
                             </select>
                         </div>
@@ -173,7 +174,7 @@ export function Residences() {
                     }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setResidence(residences[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setResidence(residences[+e.target.value])} size={SelectLength(residencesSelect.length)} aria-label=".form-select-lg example">
                                 {residencesSelect}
                             </select>
                         </div>

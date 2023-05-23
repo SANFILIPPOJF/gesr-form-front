@@ -6,6 +6,7 @@ import { NewType } from "../../types/newtype _type";
 import { DEFAULT_NEWTYPE } from "../../constants/default_newtype";
 import { addType, getTypes, inactiveType, updateType } from "../../services/Types.service";
 import { DEFAULT_FORMTYPE } from "../../constants/default_formtype";
+import { SelectLength } from "../../constants/select_length";
 
 export function TypesFormation() {
     const { type, types, reload, connected,
@@ -168,7 +169,7 @@ export function TypesFormation() {
                         }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setType(types[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setType(types[+e.target.value])} size={SelectLength(typesSelect.length)} aria-label=".form-select-lg example">
                                 {typesSelect}
                             </select>
                         </div>
@@ -216,7 +217,7 @@ export function TypesFormation() {
                     }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setType(types[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setType(types[+e.target.value])} size={SelectLength(typesSelect.length)} aria-label=".form-select-lg example">
                                 {typesSelect}
                             </select>
                         </div>

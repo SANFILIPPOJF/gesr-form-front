@@ -6,6 +6,7 @@ import { DEFAULT_SALLE } from "../../constants/default_salle";
 import { addSalle, getSalles, inactiveSalle, updateSalle } from "../../services/Salles.service";
 import { NewSalle } from "../../types/newsalle _type";
 import { DEFAULT_NEWSALLE } from "../../constants/default_newsalle";
+import { SelectLength } from "../../constants/select_length";
 
 export function Salles() {
     const { salle, salles, reload, connected,
@@ -167,7 +168,7 @@ export function Salles() {
                         }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setSalle(salles[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setSalle(salles[+e.target.value])} size={SelectLength(sallesSelect.length)} aria-label=".form-select-lg example">
                                 {sallesSelect}
                             </select>
                         </div>
@@ -215,7 +216,7 @@ export function Salles() {
                     }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setSalle(salles[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setSalle(salles[+e.target.value])} size={SelectLength(sallesSelect.length)} aria-label=".form-select-lg example">
                                 {sallesSelect}
                             </select>
                         </div>
