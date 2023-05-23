@@ -10,7 +10,7 @@ import { getResidences } from "../../services/Residences.service";
 import { DEFAULT_RESIDENCE } from "../../constants/default_residence";
 import { DEFAULT_FONCTION } from "../../constants/default_fonction";
 import { DEFAULT_USER } from "../../constants/default_user";
-import { SELECT_LENGTH } from "../../constants/select_length";
+import { SelectLength } from "../../constants/select_length";
 
 export function Agents() {
 
@@ -25,7 +25,6 @@ export function Agents() {
             const response: TResponse = await getActiveUsers(connected.token);
             if (response.statusCode < 300) {
                 setUsers([...response.data]);
-
             }
         }
         const residencesData = async () => {
@@ -59,10 +58,6 @@ export function Agents() {
             <option key={index} value={index}>{user.name}</option>
         )
     })
-    const usersSelectLength = () => {
-        if (users.length < SELECT_LENGTH) return users.length
-        return SELECT_LENGTH
-    }
     const residencesSelect = residences.map((residence, index) => {
         return (
             <option key={index} value={index}>{residence.name}</option>
@@ -211,13 +206,13 @@ export function Agents() {
                         </div>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setResidence(residences[+e.target.value])} size={3} aria-label=".form-select-lg example">
+                                onChange={(e) => setResidence(residences[+e.target.value])} size={SelectLength(residencesSelect.length)} aria-label=".form-select-lg example">
                                 {residencesSelect}
                             </select>
                         </div>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={3} aria-label=".form-select-lg example">
+                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={SelectLength(fonctionsSelect.length)} aria-label=".form-select-lg example">
                                 {fonctionsSelect}
                             </select>
                         </div>
@@ -237,7 +232,7 @@ export function Agents() {
                         }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setUser(users[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setUser(users[+e.target.value])} size={SelectLength(usersSelect.length)} aria-label=".form-select-lg example">
                                 {usersSelect}
                             </select>
                         </div>
@@ -253,13 +248,13 @@ export function Agents() {
                         </div>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setResidence(residences[+e.target.value])} size={3} aria-label=".form-select-lg example">
+                                onChange={(e) => setResidence(residences[+e.target.value])} size={SelectLength(residencesSelect.length)} aria-label=".form-select-lg example">
                                 {residencesSelect}
                             </select>
                         </div>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={3} aria-label=".form-select-lg example">
+                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={SelectLength(fonctionsSelect.length)} aria-label=".form-select-lg example">
                                 {fonctionsSelect}
                             </select>
                         </div>
@@ -278,7 +273,7 @@ export function Agents() {
                     }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setUser(users[+e.target.value])} size={usersSelectLength()} aria-label=".form-select-lg example">
+                                onChange={(e) => setUser(users[+e.target.value])} size={SelectLength(usersSelect.length)} aria-label=".form-select-lg example">
                                 {usersSelect}
                             </select>
                         </div>

@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { DEFAULT_FONCTION } from "../../constants/default_fonction";
 import { addFonction, getFonctions, inactiveFonction, updateFonction } from "../../services/Fonctions.service";
+import { SelectLength } from "../../constants/select_length";
 
 export function Fonctions() {
     const { fonction, fonctions, reload, connected,
@@ -144,7 +145,7 @@ export function Fonctions() {
                         }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={SelectLength(fonctionsSelect.length)} aria-label="form-select-lg example">
                                 {fonctionsSelect}
                             </select>
                         </div>
@@ -173,7 +174,7 @@ export function Fonctions() {
                     }}>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={5} aria-label=".form-select-lg example">
+                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={SelectLength(fonctionsSelect.length)} aria-label=".form-select-lg example">
                                 {fonctionsSelect}
                             </select>
                         </div>

@@ -18,8 +18,12 @@ import { Salle } from './types/salle_type';
 import { DEFAULT_SALLE } from './constants/default_salle';
 import { FormationType } from './types/form-type_type';
 import { DEFAULT_FORMTYPE } from './constants/default_formtype';
+import { Habilitation } from './types/habilitation_type';
+import { DEFAULT_HABILITATION } from './constants/default_habilitation';
 
 const App = () => {
+  const [habilitation, setHabilitation] = useState<Habilitation>(DEFAULT_HABILITATION);
+  const [habilitations, setHabilitations] = useState<Habilitation[]>([]);
   const [type, setType] = useState<FormationType>(DEFAULT_FORMTYPE);
   const [types, setTypes] = useState<FormationType[]>([]);
   const [salle, setSalle] = useState<Salle>(DEFAULT_SALLE);
@@ -41,9 +45,10 @@ const App = () => {
       residence, residences, setResidences, setResidence,
       fonction, fonctions, setFonctions, setFonction,
       salle, salles, setSalle, setSalles,
-      type, types, setType, setTypes
+      type, types, setType, setTypes,
+      habilitation, habilitations, setHabilitation, setHabilitations
     }}>
-      <div className="App">
+      <div className="App bg-info-subtle">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Accueil></Accueil>}></Route>

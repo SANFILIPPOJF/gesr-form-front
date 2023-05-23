@@ -9,8 +9,12 @@ import { DEFAULT_SALLE } from "../constants/default_salle";
 import { Salle } from "../types/salle_type";
 import { DEFAULT_FORMTYPE } from "../constants/default_formtype";
 import { FormationType } from "../types/form-type_type";
+import { DEFAULT_HABILITATION } from "../constants/default_habilitation";
+import { Habilitation } from "../types/habilitation_type";
 
 export const AuthContext = createContext({
+    habilitation: DEFAULT_HABILITATION,
+    habilitations: [DEFAULT_HABILITATION],
     type: DEFAULT_FORMTYPE,
     types: [DEFAULT_FORMTYPE],
     salle: DEFAULT_SALLE,
@@ -23,6 +27,8 @@ export const AuthContext = createContext({
     fonction: DEFAULT_FONCTION,
     fonctions: [DEFAULT_FONCTION],
     reload: false,
+    setHabilitation: (value: Habilitation) => {},
+    setHabilitations: (value: Habilitation[]) => {},
     setType: (value: FormationType) => {},
     setTypes: (value: FormationType[]) => {},
     setSalle: (value: Salle) => {},

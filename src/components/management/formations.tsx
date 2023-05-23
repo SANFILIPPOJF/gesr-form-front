@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { getActiveUsers } from "../../services/Users.service";
 
-export function Admins() {
+export function Formations() {
     const { user, users, residence, residences, fonction, fonctions, reload, connected,
         setReload, setUser, setUsers, setFonctions, setResidences, setResidence, setFonction }
         = useContext(AuthContext);
@@ -34,7 +34,7 @@ export function Admins() {
     return (
         <Accordion>
             <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Admins</Accordion.Header>
+                <Accordion.Header>Liste des Formations réalisée à confirmer</Accordion.Header>
                 <Accordion.Body>
                 <div className="overflow-auto">
                         <Table striped>
@@ -52,12 +52,17 @@ export function Admins() {
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
-                <Accordion.Header>Ajouter autorisation Admin</Accordion.Header>
+                <Accordion.Header>Liste des Formation à venir</Accordion.Header>
                 <Accordion.Body>
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
-                <Accordion.Header>Supprimer autorisation Agent</Accordion.Header>
+                <Accordion.Header>Liste des Formations incompletes</Accordion.Header>
+                <Accordion.Body>
+                </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+                <Accordion.Header>Ajouter une Formation</Accordion.Header>
                 <Accordion.Body>
                 </Accordion.Body>
             </Accordion.Item>
