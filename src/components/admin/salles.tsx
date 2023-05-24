@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Accordion, Table } from "react-bootstrap";
+import { Accordion, Badge, Table } from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { DEFAULT_SALLE } from "../../constants/default_salle";
@@ -17,8 +17,16 @@ export function Salles() {
 
         const sallesData = async () => {
             const response: TResponse = await getSalles(connected.token);
-            if (response.statusCode < 300) setSalles([...response.data]);
-            else alert(response.message)
+            if (response.statusCode < 300) {
+                const orderedSalles = [...response.data].sort((s1,s2) => {
+                    if (s1.name > s2.name) return 1;
+                    if (s1.name < s2.name) return -1;
+                    return 0;
+                });
+                return setSalles(orderedSalles);
+            }
+            if (response.statusCode === 404) return setSalles([])
+            return alert(response.message);
         }
         sallesData();
     }, [reload])
@@ -96,7 +104,9 @@ export function Salles() {
     return (
         <Accordion>
             {sallesTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Salles</Accordion.Header>
+                <Accordion.Header>Liste des Salles
+                <div className="ms-2"><Badge bg="info">{salles.length}</Badge></div>
+                </Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
                         <Table striped>

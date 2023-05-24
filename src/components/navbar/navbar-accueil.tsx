@@ -10,7 +10,7 @@ export function NavbarAccueil() {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="btn btn-outline-primary" to="/connexion">
+                        <NavLink className="nav-link" to="/connexion">
                             Connexion
                         </NavLink>
                     </li>

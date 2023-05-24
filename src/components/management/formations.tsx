@@ -2,30 +2,32 @@ import { Accordion, Table } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
-import { getActiveUsers } from "../../services/Users.service";
+import { getFormations } from "../../services/Formations.service";
 
 export function Formations() {
-    const { user, users, residence, residences, fonction, fonctions, reload, connected,
-        setReload, setUser, setUsers, setFonctions, setResidences, setResidence, setFonction }
+    const { user, users, formation, formations, residence, residences, fonction, fonctions, reload, connected,
+        setReload, setUser, setUsers, setFormation, setFormations, setFonctions, setResidences, setResidence, setFonction }
         = useContext(AuthContext);
 
     useEffect(() => {
 
-        const usersData = async () => {
-            const response: TResponse = await getActiveUsers(connected.token);
+        const formationsData = async () => {
+            const response: TResponse = await getFormations(connected.token);
             if (response.statusCode < 300) {
-                setUsers([...response.data]);
+                return setFormations([...response.data]);
             }
+            if (response.statusCode === 404) return setFormations([])
+            return alert(response.message);
         }
-        usersData();
+        formationsData();
     }, [reload])
 
-    const adminsTab = users.map((u, index) => {
-        if (u.fonction.name === "Admin") {
+    const formationsTab = formations.map((f, index) => {
+        if (new Date(f.date) >= new Date(Date.now())) {
             return (
                 <tr key={index}>
-                    <td>{u.name}</td>
-                    <td>{u.residence.name}</td>
+                    <td>{f.formationType.name}</td>
+                    <td>{new Date(f.date).toDateString()}</td>
                 </tr>
             )
         }else return
@@ -40,12 +42,12 @@ export function Formations() {
                         <Table striped>
                             <thead>
                                 <tr>
-                                    <th>Admin</th>
-                                    <th>Residence</th>
+                                    <th>Nom</th>
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {adminsTab}
+                                {formationsTab}
                             </tbody>
                         </Table>
                     </div>

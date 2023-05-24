@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Accordion, Table } from "react-bootstrap";
+import { Accordion, Badge, Table } from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { DEFAULT_FONCTION } from "../../constants/default_fonction";
@@ -16,8 +16,15 @@ export function Fonctions() {
         const fonctionsData = async () => {
             const response: TResponse = await getFonctions(connected.token);
             if (response.statusCode < 300) {
-                setFonctions([...response.data]);
+                const orderedFonctions = [...response.data].sort((f1,f2) => {
+                    if (f1.name > f2.name) return 1;
+                    if (f1.name < f2.name) return -1;
+                    return 0;
+                });
+                return setFonctions(orderedFonctions);
             }
+            if (response.statusCode === 404) return setFonctions([])
+            return alert(response.message);
         }
         fonctionsData();
     }, [reload])
@@ -94,7 +101,9 @@ export function Fonctions() {
     return (
         <Accordion>
             {fonctionsTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Fonctions</Accordion.Header>
+                <Accordion.Header>Liste des Fonctions
+                <div className="ms-2"><Badge bg="info">{fonctions.length}</Badge></div>
+                </Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
                         <Table striped>

@@ -11,8 +11,12 @@ import { DEFAULT_FORMTYPE } from "../constants/default_formtype";
 import { FormationType } from "../types/form-type_type";
 import { DEFAULT_HABILITATION } from "../constants/default_habilitation";
 import { Habilitation } from "../types/habilitation_type";
+import { DEFAULT_FORMATION } from "../constants/default_formation";
+import { Formation } from "../types/formation_type";
 
 export const AuthContext = createContext({
+    formation: DEFAULT_FORMATION,
+    formations: [DEFAULT_FORMATION],
     habilitation: DEFAULT_HABILITATION,
     habilitations: [DEFAULT_HABILITATION],
     type: DEFAULT_FORMTYPE,
@@ -27,6 +31,8 @@ export const AuthContext = createContext({
     fonction: DEFAULT_FONCTION,
     fonctions: [DEFAULT_FONCTION],
     reload: false,
+    setFormation: (value: Formation) => {},
+    setFormations: (value: Formation[]) => {},
     setHabilitation: (value: Habilitation) => {},
     setHabilitations: (value: Habilitation[]) => {},
     setType: (value: FormationType) => {},

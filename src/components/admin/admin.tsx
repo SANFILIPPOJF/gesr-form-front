@@ -1,12 +1,11 @@
-import { Accordion, Table } from "react-bootstrap";
-import { useContext, useEffect, useState } from "react";
+import { Accordion, Badge, Table } from "react-bootstrap";
+import { useContext, useEffect  } from "react";
 import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { getActiveUsers } from "../../services/Users.service";
 
 export function Admins() {
-    const { user, users, residence, residences, fonction, fonctions, reload, connected,
-        setReload, setUser, setUsers, setFonctions, setResidences, setResidence, setFonction }
+    const { users, reload, connected, setUsers }
         = useContext(AuthContext);
 
     useEffect(() => {
@@ -14,8 +13,16 @@ export function Admins() {
         const usersData = async () => {
             const response: TResponse = await getActiveUsers(connected.token);
             if (response.statusCode < 300) {
-                setUsers([...response.data]);
+                const orderedUsers = [...response.data].sort((u1,u2) => {
+                    if (u1.name > u2.name) return 1;
+                    if (u1.name < u2.name) return -1;
+                    return 0;
+                });
+                return setUsers(orderedUsers);
             }
+            if (response.statusCode === 404) return setUsers([]);
+            return alert(response.message);
+
         }
         usersData();
     }, [reload])
@@ -34,7 +41,9 @@ export function Admins() {
     return (
         <Accordion>
             {adminsTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Admins</Accordion.Header>
+                <Accordion.Header>Liste des Admins
+                <div className="ms-2"><Badge bg="info">{(adminsTab.length-2)/2}</Badge></div>
+                </Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
                         <Table striped>

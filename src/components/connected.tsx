@@ -94,8 +94,9 @@ export function Connected() {
                     </Accordion.Body>
                 </Accordion.Item>
                 {connected.forme.length > 0 && <Accordion.Item eventKey="1">
-                    <Accordion.Header>Je Forme :
-                        <Badge bg="warning" pill>{connected.forme.length}</Badge>
+                    <Accordion.Header>Je Forme
+                    <div className="ms-2"><Badge bg="warning" pill>{connected.forme.length}</Badge></div>
+                        
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>
@@ -116,7 +117,8 @@ export function Connected() {
                     </Accordion.Body>
                 </Accordion.Item>}
                 {formations.length > 0 && <Accordion.Item eventKey="2">
-                    <Accordion.Header>Mes Formations à venir :<Badge bg="warning">{formations.length}</Badge>
+                    <Accordion.Header>Mes Formations à venir :
+                    <div className="ms-2"><Badge bg="warning">{formations.length}</Badge></div>
                     </Accordion.Header>
                     <Accordion.Body>
                         <Table striped>
@@ -137,7 +139,7 @@ export function Connected() {
                 </Accordion.Item>}
                 {connected.habilitations.length > 0 && <Accordion.Item eventKey="3">
                     <Accordion.Header>
-                        Mes Habilitations :
+                        Mes Habilitations
                         <div className="ms-2"><Badge bg="info">{connected.habilitations.length}</Badge></div>
                     </Accordion.Header>
                     <Accordion.Body>
@@ -155,7 +157,7 @@ export function Connected() {
                     </Accordion.Body>
                 </Accordion.Item>}
                 {connected.habFormateurs.length > 0 && <Accordion.Item eventKey="4">
-                    <Accordion.Header>Mes Habilitations Formateur :
+                    <Accordion.Header>Mes Habilitations Formateur
                         <div className="ms-2"><Badge bg="info">{connected.habFormateurs.length}</Badge></div>
                     </Accordion.Header>
                     <Accordion.Body>

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Accordion, Table } from "react-bootstrap";
+import { Accordion, Badge, Table } from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { addResidence, getResidences, inactiveResidence, updateResidence } from "../../services/Residences.service";
@@ -16,8 +16,15 @@ export function Residences() {
         const residencesData = async () => {
             const response: TResponse = await getResidences(connected.token);
             if (response.statusCode < 300) {
-                setResidences([...response.data]);
+                const orderedResidences = [...response.data].sort((r1,r2) => {
+                    if (r1.name > r2.name) return 1;
+                    if (r1.name < r2.name) return -1;
+                    return 0;
+                });
+                return setResidences(orderedResidences);
             }
+            if (response.statusCode === 404) return setResidences([])
+            return alert(response.message);
         }
         residencesData();
     }, [reload])
@@ -94,7 +101,9 @@ export function Residences() {
     return (
         <Accordion>
             {residencesTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Residences</Accordion.Header>
+                <Accordion.Header>Liste des Residences
+                <div className="ms-2"><Badge bg="info">{residences.length}</Badge></div>
+                </Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
                         <Table striped>

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Accordion, Table } from "react-bootstrap";
+import { Accordion, Badge, Table } from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
 import { NewType } from "../../types/newtype _type";
@@ -18,8 +18,16 @@ export function TypesFormation() {
 
         const typesData = async () => {
             const response: TResponse = await getTypes(connected.token);
-            if (response.statusCode < 300) setTypes([...response.data]);
-            else alert(response.message)
+            if (response.statusCode < 300) {
+                const orderedTypes = [...response.data].sort((t1,t2) => {
+                    if (t1.name > t2.name) return 1;
+                    if (t1.name < t2.name) return -1;
+                    return 0;
+                });
+                return setTypes(orderedTypes);
+            }
+            if (response.statusCode === 404) return setTypes([])
+            return alert(response.message);
         }
         typesData();
     }, [reload])
@@ -97,7 +105,9 @@ export function TypesFormation() {
     return (
         <Accordion>
             {typesTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Types de formation</Accordion.Header>
+                <Accordion.Header>Liste des Types de formation
+                <div className="ms-2"><Badge bg="info">{types.length}</Badge></div>
+                </Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
                         <Table striped>

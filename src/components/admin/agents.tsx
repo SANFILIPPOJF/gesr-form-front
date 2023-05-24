@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Accordion, Table } from "react-bootstrap";
+import { Accordion, Badge, Table } from "react-bootstrap";
 import { AuthContext } from "../../context/auth-context";
 import { addUser, getActiveUsers, inactiveUser, updateUser } from "../../services/Users.service";
 import { TResponse } from "../../types/response_type";
@@ -24,20 +24,41 @@ export function Agents() {
         const usersData = async () => {
             const response: TResponse = await getActiveUsers(connected.token);
             if (response.statusCode < 300) {
-                setUsers([...response.data]);
+                const orderedUsers = [...response.data].sort((u1,u2) => {
+                    if (u1.name > u2.name) return 1;
+                    if (u1.name < u2.name) return -1;
+                    return 0;
+                });
+                return setUsers(orderedUsers);
             }
+            if (response.statusCode === 404) return setUsers([])
+            return alert(response.message);
         }
         const residencesData = async () => {
             const response: TResponse = await getResidences(connected.token);
             if (response.statusCode < 300) {
-                setResidences([...response.data]);
+                const orderedResidences = [...response.data].sort((r1,r2) => {
+                    if (r1.name > r2.name) return 1;
+                    if (r1.name < r2.name) return -1;
+                    return 0;
+                });
+                return setResidences(orderedResidences);
             }
+            if (response.statusCode === 404) return setResidences([])
+            return alert(response.message);
         }
         const fonctionsData = async () => {
             const response: TResponse = await getFonctions(connected.token);
             if (response.statusCode < 300) {
-                setFonctions([...response.data]);
+                const orderedFonctions = [...response.data].sort((f1,f2) => {
+                    if (f1.name > f2.name) return 1;
+                    if (f1.name < f2.name) return -1;
+                    return 0;
+                });
+                return setFonctions(orderedFonctions);
             }
+            if (response.statusCode === 404) return setFonctions([])
+            return alert(response.message);
         }
         usersData();
         residencesData();
@@ -138,7 +159,9 @@ export function Agents() {
     return (
         <Accordion>
             {usersTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Agents</Accordion.Header>
+                <Accordion.Header>Liste des Agents
+                <div className="ms-2"><Badge bg="info">{users.length}</Badge></div>
+                </Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
                         <Table striped>

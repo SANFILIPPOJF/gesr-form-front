@@ -20,8 +20,12 @@ import { FormationType } from './types/form-type_type';
 import { DEFAULT_FORMTYPE } from './constants/default_formtype';
 import { Habilitation } from './types/habilitation_type';
 import { DEFAULT_HABILITATION } from './constants/default_habilitation';
+import { Formation } from './types/formation_type';
+import { DEFAULT_FORMATION } from './constants/default_formation';
 
 const App = () => {
+  const [formation, setFormation] = useState<Formation>(DEFAULT_FORMATION);
+  const [formations, setFormations] = useState<Formation[]>([]);
   const [habilitation, setHabilitation] = useState<Habilitation>(DEFAULT_HABILITATION);
   const [habilitations, setHabilitations] = useState<Habilitation[]>([]);
   const [type, setType] = useState<FormationType>(DEFAULT_FORMTYPE);
@@ -39,6 +43,7 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{
+      formation, formations, setFormation, setFormations,
       connected, setConnected,
       reload, setReload,
       user, users, setUser, setUsers,

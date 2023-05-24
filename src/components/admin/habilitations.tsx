@@ -21,22 +21,43 @@ export function Habilitations() {
         const habilitationsData = async () => {
             if (user.id > 0) {
                 const response: TResponse = await getHabilitations(connected.token, user.id);
-                if (response.statusCode < 300) return setHabilitations([...response.data]);
+                if (response.statusCode < 300) {
+                    const orderedHabilitations = [...response.data].sort((h1,h2) => {
+                        if (h1.formationType.name > h2.formationType.name) return 1;
+                        if (h1.formationType.name < h2.formationType.name) return -1;
+                        return 0;
+                    });
+                    return setHabilitations(orderedHabilitations);
+                }
                 if (response.statusCode === 404) return setHabilitations([])
-                return alert(response.message)
+                return alert(response.message);
             }
         }
         const usersData = async () => {
             const response: TResponse = await getActiveUsers(connected.token);
             if (response.statusCode < 300) {
-                setUsers([...response.data]);
-
+                const orderedUsers = [...response.data].sort((u1,u2) => {
+                    if (u1.name > u2.name) return 1;
+                    if (u1.name < u2.name) return -1;
+                    return 0;
+                });
+                return setUsers(orderedUsers);
             }
+            if (response.statusCode === 404) return setUsers([])
+            return alert(response.message);
         }
         const typesData = async () => {
             const response: TResponse = await getTypes(connected.token);
-            if (response.statusCode < 300) setTypes([...response.data]);
-            else alert(response.message)
+            if (response.statusCode < 300) {
+                const orderedTypes = [...response.data].sort((t1,t2) => {
+                    if (t1.name > t2.name) return 1;
+                    if (t1.name < t2.name) return -1;
+                    return 0;
+                });
+                return setTypes(orderedTypes);
+            }
+            if (response.statusCode === 404) return setTypes([])
+            return alert(response.message);
         }
         typesData();
         usersData();
@@ -219,7 +240,7 @@ export function Habilitations() {
                 </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="3">
-                <Accordion.Header>Supprimer un Type de formation</Accordion.Header>
+                <Accordion.Header>Supprimer une Habilitation</Accordion.Header>
                 <Accordion.Body>
                     <form className="container w-100"
                         onSubmit={(e) => {
