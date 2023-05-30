@@ -15,8 +15,8 @@ export function Connexion() {
             const newUser = { ...connected }
             newUser.cp = logInfo.cp;
             newUser.token = response.data.access_token
-            setConnected(newUser)
-        }else alert(response.message)
+            return setConnected(newUser)
+        }else return alert(response.message)
     };
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         const propertyName = e.currentTarget.name;

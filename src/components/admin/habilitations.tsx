@@ -142,7 +142,7 @@ export function Habilitations() {
     return (
         <Accordion onSelect={() => resetValues()}>
             <Accordion.Item eventKey="0">
-                <Accordion.Header onClick={() => resetValues()}>Liste des Habilitations par agent</Accordion.Header>
+                <Accordion.Header onClick={() => resetValues()}>Les Habilitations par agent</Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
                         <div>

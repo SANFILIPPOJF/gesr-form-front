@@ -105,7 +105,7 @@ export function TypesFormation() {
     return (
         <Accordion>
             {typesTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Types de formation
+                <Accordion.Header>Les Types de formation
                 <div className="ms-2"><Badge bg="info">{types.length}</Badge></div>
                 </Accordion.Header>
                 <Accordion.Body>

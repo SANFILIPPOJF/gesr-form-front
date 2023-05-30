@@ -101,7 +101,7 @@ export function Residences() {
     return (
         <Accordion>
             {residencesTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Residences
+                <Accordion.Header>Les Résidences
                 <div className="ms-2"><Badge bg="info">{residences.length}</Badge></div>
                 </Accordion.Header>
                 <Accordion.Body>

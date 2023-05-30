@@ -5,5 +5,4 @@ export interface NewUser {
     name: string;
     fonctionId: number;
     residenceId: number;
-
 }

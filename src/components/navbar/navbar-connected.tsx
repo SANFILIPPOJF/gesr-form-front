@@ -27,13 +27,13 @@ export function Navbar() {
                             Ma page
                         </NavLink>
                     </li>
-                    {connected.fonction.name === "Admin" && <>
-                        {!window.location.pathname.includes("/admin") && <li className="nav-item">
+                    {(connected.fonction.name === "Admin" || connected.fonction.name === "Gestionnaire") && <>
+                        {!window.location.pathname.includes("/admin")  && <li className="nav-item">
                             <NavLink className="nav-link" to="/management">
                                 Mode Gestionnaire
                             </NavLink>
                         </li>}
-                        {!window.location.pathname.includes("/management") && <li className="nav-item">
+                        {!window.location.pathname.includes("/management") && connected.fonction.name === "Admin" && <li className="nav-item">
                             <NavLink className="nav-link" to="/admin">
                                 Mode Admin
                             </NavLink>

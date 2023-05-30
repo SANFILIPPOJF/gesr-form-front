@@ -1,4 +1,4 @@
-import { Accordion, Badge, Table } from "react-bootstrap";
+import { Accordion, Table } from "react-bootstrap";
 import { useContext, useEffect  } from "react";
 import { AuthContext } from "../../context/auth-context";
 import { TResponse } from "../../types/response_type";
@@ -7,7 +7,6 @@ import { getActiveUsers } from "../../services/Users.service";
 export function Admins() {
     const { users, reload, connected, setUsers }
         = useContext(AuthContext);
-
     useEffect(() => {
 
         const usersData = async () => {
@@ -26,7 +25,6 @@ export function Admins() {
         }
         usersData();
     }, [reload])
-
     const adminsTab = users.map((u, index) => {
         if (u.fonction.name === "Admin") {
             return (
@@ -35,14 +33,13 @@ export function Admins() {
                     <td>{u.residence.name}</td>
                 </tr>
             )
-        } else return
+        }
     })
 
     return (
         <Accordion>
             {adminsTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Admins
-                <div className="ms-2"><Badge bg="info">{(adminsTab.length-2)/2}</Badge></div>
+                <Accordion.Header>Les Admins
                 </Accordion.Header>
                 <Accordion.Body>
                     <div className="overflow-auto">
@@ -66,7 +63,7 @@ export function Admins() {
                 </Accordion.Body>
             </Accordion.Item>
             {adminsTab.length > 0 && <Accordion.Item eventKey="2">
-                <Accordion.Header>Supprimer autorisation Agent</Accordion.Header>
+                <Accordion.Header>Supprimer autorisation Admin</Accordion.Header>
                 <Accordion.Body>
                 </Accordion.Body>
             </Accordion.Item>}

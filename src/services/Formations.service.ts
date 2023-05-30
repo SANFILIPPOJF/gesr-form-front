@@ -1,5 +1,6 @@
 import { BASEURL } from "../constants/base_url";
 import { Fonction } from "../types/fonction_type";
+import { NewFormation } from "../types/newformation_type";
 import { TResponse } from "../types/response_type";
 
 
@@ -9,13 +10,17 @@ export const getFormations = async (token: string): Promise<TResponse> => {
     return await response.json();
 }
 
-export const addFonction = async (name: string): Promise<TResponse> => {
+export const addFormation = async (formationInput: NewFormation): Promise<TResponse> => {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: `{"name":"${name}"}`
+        body: `{
+            "formTypeId":${formationInput.typeId},
+            "date":"${formationInput.date}",
+            "salleId":${formationInput.salleId},
+            "heure":"${formationInput.heure}"}`
     };
-    const response = await fetch(`${BASEURL}/fonctions/`, options)
+    const response = await fetch(`${BASEURL}/formations/`, options)
     return await response.json();
 }
 

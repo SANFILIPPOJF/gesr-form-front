@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 import { NavbarAdmin } from "./navbar/navbar-admin";
 import { Navbar } from "./navbar/navbar-connected";
@@ -12,7 +12,6 @@ import { Habilitations } from "./admin/habilitations";
 
 export function Admin() {
     const { connected } = useContext(AuthContext);
-    useEffect(() => { })
     return (
         <>
             <div>

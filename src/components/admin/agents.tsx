@@ -20,7 +20,6 @@ export function Agents() {
     const [newUser, setNewUser] = useState<NewUser>(DEFAULT_NEWUSER);
 
     useEffect(() => {
-
         const usersData = async () => {
             const response: TResponse = await getActiveUsers(connected.token);
             if (response.statusCode < 300) {
@@ -159,7 +158,7 @@ export function Agents() {
     return (
         <Accordion>
             {usersTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Agents
+                <Accordion.Header>Les Agents
                 <div className="ms-2"><Badge bg="info">{users.length}</Badge></div>
                 </Accordion.Header>
                 <Accordion.Body>
@@ -235,7 +234,9 @@ export function Agents() {
                         </div>
                         <div>
                             <select className="form-select form-select-sm mb-3"
-                                onChange={(e) => setFonction(fonctions[+e.target.value])} size={SelectLength(fonctionsSelect.length)} aria-label=".form-select-lg example">
+                                onChange={(e) => setFonction(fonctions[+e.target.value])} 
+                                size={SelectLength(fonctionsSelect.length)} 
+                                aria-label=".form-select-lg example">
                                 {fonctionsSelect}
                             </select>
                         </div>

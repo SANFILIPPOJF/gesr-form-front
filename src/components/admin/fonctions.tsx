@@ -101,7 +101,7 @@ export function Fonctions() {
     return (
         <Accordion>
             {fonctionsTab.length > 0 && <Accordion.Item eventKey="0">
-                <Accordion.Header>Liste des Fonctions
+                <Accordion.Header>Les Fonctions
                 <div className="ms-2"><Badge bg="info">{fonctions.length}</Badge></div>
                 </Accordion.Header>
                 <Accordion.Body>

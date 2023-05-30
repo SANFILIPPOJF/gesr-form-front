@@ -1,5 +1,4 @@
 import { BASEURL } from "../constants/base_url";
-import { Habilitation } from "../types/habilitation_type";
 import { NewHabilitation } from "../types/newhabilitation _type";
 import { TResponse } from "../types/response_type";
 
