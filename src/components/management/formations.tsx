@@ -64,7 +64,7 @@ export function Formations() {
                     <td>{new Date(f.date).toDateString()}</td>
                 </tr>
             )
-        } else return
+        }
     })
     const typesSelect = types.map((t, index) => {
         return (<option key={index} value={index}>{t.name}</option>)
