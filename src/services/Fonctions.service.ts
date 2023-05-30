@@ -34,6 +34,6 @@ export const inactiveFonction = async (fonctionId: number): Promise<TResponse> =
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     };
-    const response = await fetch(`${BASEURL}/residences/${fonctionId}`, options)
+    const response = await fetch(`${BASEURL}/fonctions/${fonctionId}`, options)
     return await response.json();
 }
