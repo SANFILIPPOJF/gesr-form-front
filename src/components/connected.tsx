@@ -95,7 +95,7 @@ export function Connected() {
                 </Accordion.Item>
                 {connected.forme.length > 0 && <Accordion.Item eventKey="1">
                     <Accordion.Header>Je Forme
-                    <div className="ms-2"><Badge bg="warning" pill>{connected.forme.length}</Badge></div>
+                    <div className="ms-2"><Badge bg="warning">{connected.forme.length}</Badge></div>
                         
                     </Accordion.Header>
                     <Accordion.Body>
